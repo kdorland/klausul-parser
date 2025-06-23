@@ -33,15 +33,13 @@ public class EvalTracer {
         return switch (c.operator()) {
             case "=" -> actual.stream().anyMatch(v -> v.equals(c.values().getFirst()));
             case "i" -> actual.stream().anyMatch(c.values()::contains);
-            case ">=", "<=", ">", "<" -> {
+            case ">=", "<=" -> {
                 int target = Integer.parseInt(c.values().getFirst());
                 yield actual.stream()
                         .mapToInt(Integer::parseInt)
                         .anyMatch(actualVal -> switch (c.operator()) {
                             case ">=" -> actualVal >= target;
                             case "<=" -> actualVal <= target;
-                            case ">"  -> actualVal > target;
-                            case "<"  -> actualVal < target;
                             default -> false;
                         });
             }

@@ -28,26 +28,6 @@ public class Main {
         //fejlSyntax(input);
     }
 
-    public static void fejlSyntax(String input) {
-        // Parsing af input til tokens
-        System.out.println("*** Parsning af tokens ***");
-        Lexer lexer = new Lexer(input);
-        var tokens = lexer.getTokens();
-        System.out.println(tokens);
-
-        // Parsing af tokens til et udtryk
-        System.out.println("\n*** Parsning af udtryk ***");
-        Parser parser = new Parser(tokens);
-        Expression expression = null;
-        try {
-            expression = parser.parseKlausul();
-            ExpressionPrinter.print(expression);
-        } catch (RuntimeException e) {
-            System.err.println("Error parsing expression: " + e.getMessage());
-        }
-
-    }
-
     public static void validtEksempel(String input, DataContext ctx) {
         // Parsing af input til tokens
         System.out.println("*** Parsning af tokens ***");
@@ -80,4 +60,25 @@ public class Main {
 
         TracePrinter.print(traced);
     }
+
+    public static void fejlSyntax(String input) {
+        // Parsing af input til tokens
+        System.out.println("*** Parsning af tokens ***");
+        Lexer lexer = new Lexer(input);
+        var tokens = lexer.getTokens();
+        System.out.println(tokens);
+
+        // Parsing af tokens til et udtryk
+        System.out.println("\n*** Parsning af udtryk ***");
+        Parser parser = new Parser(tokens);
+        Expression expression = null;
+        try {
+            expression = parser.parseKlausul();
+            ExpressionPrinter.print(expression);
+        } catch (RuntimeException e) {
+            System.err.println("Error parsing expression: " + e.getMessage());
+        }
+
+    }
+
 }
